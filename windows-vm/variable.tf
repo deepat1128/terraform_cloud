@@ -32,3 +32,39 @@ variable nic{
 		variable ipconfigname{
 			default = "ipdeepa-win"
 		}
+variable "vmname" {
+  description = "Name of the Virtual Machine"
+  type        = string
+}
+
+variable "size" {
+  size = "Standard_D4s_v3"
+  type        = string
+}
+
+variable "username" {
+  description = "Admin username for the VM"
+  type        = string
+}
+
+variable "password" {
+  description = "Admin password for Windows VM"
+  type        = string
+  sensitive   = true
+}
+
+variable "image" {
+  description = "Image details for the Windows VM"
+  type = object({
+    publisher = string
+    offer     = string
+    sku       = string
+    version   = string
+  })
+ default = {
+    publisher = "MicrosoftWindowsServer"
+    offer     = "WindowsServer"
+    sku       = "2022-Datacenter"
+    version   = "latest"
+  }
+}
