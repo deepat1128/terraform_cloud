@@ -30,13 +30,13 @@ resource "azurerm_network_security_group" "example" {
 		  resource_group_name = azurerm_resource_group.example.name
 
 		  security_rule {
-			name                       = "deepa123"
+			name                       = "deepa123-win"
 			priority                   = 100
 			direction                  = "Inbound"
 			access                     = "Allow"
 			protocol                   = "Tcp"
 			source_port_range          = "*"
-			destination_port_range     = "22"
+			destination_port_range     = "3389"
 			source_address_prefix      = "*"
 			destination_address_prefix = "*"
 		  }
@@ -59,3 +59,36 @@ resource "azurerm_network_interface_security_group_association" "example" {
 			  network_interface_id      = azurerm_network_interface.example.id
 			  network_security_group_id = azurerm_network_security_group.example.id
 			}
+
+resource "azurerm_windows_virtual_machine" "example" {
+  name                = var.vmname
+  resource_group_name = azurerm_resource_group.example.name
+  location            = azurerm_resource_group.example.location
+  size                = var.size
+  admin_username      = var.username
+  admin_password      = var.password
+
+  network_interface_ids = [
+    azurerm_network_interface.example.id,
+  ]
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+
+  source_image_reference {
+    publisher = var.image.publisher
+    offer     = var.image.offer
+    sku       = var.image.sku
+    version   = var.image.version
+  }
+
+  winrm_listener {
+    protocol = "Http"
+  }
+
+  provision_vm_agent = true
+  enable_automatic_updates = true
+}
+
