@@ -38,7 +38,7 @@ variable "vmname" {
 }
 
 variable "size" {
-  size = "Standard_D4s_v3"
+  description = "Size of the VM"
   type        = string
 }
 
