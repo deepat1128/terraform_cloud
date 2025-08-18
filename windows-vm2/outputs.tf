@@ -1,7 +1,7 @@
-output "vm_name" {
-  value = azurerm_windows_virtual_machine.vm.name
+output "vm_id" {
+  value = azurerm_windows_virtual_machine.vm.id
 }
 
-output "private_ip" {
+output "vm_public_ip" {
   value = azurerm_network_interface.nic.private_ip_address
 }
