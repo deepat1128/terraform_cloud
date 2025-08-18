@@ -48,7 +48,7 @@ variable "username" {
 }
 
 variable "password" {
-  description = "Deepat@1128"
+  default = "Deepat@1128"
   type        = string
   sensitive   = true
 }
