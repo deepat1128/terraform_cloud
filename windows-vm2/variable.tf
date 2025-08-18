@@ -1,10 +1,22 @@
 
-variable "resource_group_name" {}
+variable "resource_group_name" {
+  type = string
+}
+
 variable "location" {
+  type    = string
   default = "East US"
 }
-variable "vm_name" {}
-variable "admin_username" {}
+
+variable "vm_name" {
+  type = string
+}
+
+variable "admin_username" {
+  type = string
+}
+
 variable "admin_password" {
+  type      = string
   sensitive = true
 }
