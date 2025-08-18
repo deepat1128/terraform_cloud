@@ -76,7 +76,7 @@ resource "azurerm_windows_virtual_machine" "example" {
     azurerm_network_interface.example.id,
   ]
 depends_on = [
-    azurerm_network_interface.example.id
+    azurerm_network_interface.example
   ]
 
   os_disk {
