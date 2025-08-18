@@ -1,22 +1,10 @@
-
-variable "resource_group_name" {
-  type = string
-}
-
-variable "location" {
-  type    = string
-  default = "East US"
-}
-
-variable "vm_name" {
-  type = string
-}
-
 variable "admin_username" {
-  type = string
+  description = "Admin username for the Windows VM"
+  type        = string
 }
 
 variable "admin_password" {
-  type      = string
-  sensitive = true
+  description = "Admin password for the Windows VM"
+  type        = string
+  sensitive   = true
 }
