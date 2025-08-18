@@ -1,54 +1,54 @@
 variable rgname {
-	default = "rg-deepa-win"
+	default = "rg-deepa-win2"
 	}
 variable location {
-	default = "West US 2"
+	default = "Central US"
 	}
 variable vnetname {
-	default = "vnet-deepa-win"
+	default = "vnet-deepa-win2"
 	}
 variable addresspace {
-	default = ["10.2.0.0/16"]
+	default = ["10.3.0.0/16"]
 	type = list(string)
 	}
 
 variable snetname{
-			default = "snet-deepa-win"
+			default = "snet-deepa-win2"
 		}
 	variable saddresspace{
-			default = ["10.2.1.0/24"]
+			default = ["10.3.1.0/24"]
 			type = list(string)
 		}
 variable pip{
-			default = "publicip-deepa-win"
+			default = "publicip-deepa-win2"
 		}
 
 variable nsg{
-			default = "nsg-deepa-win"
+			default = "nsg-deepa-win2"
 		}
 variable nic{
-			default = "nic-deepa-win"
+			default = "nic-deepa-win2"
 		}
 		variable ipconfigname{
-			default = "ipdeepa-win"
+			default = "ipdeepa-win2"
 		}
 variable "vmname" {
-  description = "Name of the Virtual Machine"
+  default = "win-vm-deepa2"
   type        = string
 }
 
 variable "size" {
-  description = "Size of the VM"
+  default = "Standard_D4s_v3"
   type        = string
 }
 
 variable "username" {
-  description = "Admin username for the VM"
+  default = "deepa"
   type        = string
 }
 
 variable "password" {
-  description = "Admin password for Windows VM"
+  description = "Deepat@1128"
   type        = string
   sensitive   = true
 }
