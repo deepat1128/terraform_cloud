@@ -30,8 +30,8 @@ resource "azurerm_network_security_group" "example" {
 		  resource_group_name = azurerm_resource_group.example.name
 
 		  security_rule {
-			name                       = "deepa123-win"
-			priority                   = 100
+			name                       = "deepa123-win2"
+			priority                   = 1000
 			direction                  = "Inbound"
 			access                     = "Allow"
 			protocol                   = "Tcp"
@@ -51,12 +51,16 @@ resource "azurerm_network_interface" "example" {
 				name                          = var.ipconfigname
 				subnet_id                     = azurerm_subnet.example.id
 				private_ip_address_allocation = "Dynamic"
-                                public_ip_address_id          = azurerm_public_ip.example.id
+                public_ip_address_id          = azurerm_public_ip.example.id
 			  }
 		}
 
 resource "azurerm_network_interface_security_group_association" "example" {
 			  network_interface_id      = azurerm_network_interface.example.id
+			  network_security_group_id = azurerm_network_security_group.example.id
+			}
+resource "azurerm_subnet_network_security_group_association" "example" {
+			  subnet_id      = azurerm_subnet.example.id
 			  network_security_group_id = azurerm_network_security_group.example.id
 			}
 
@@ -70,6 +74,9 @@ resource "azurerm_windows_virtual_machine" "example" {
 
   network_interface_ids = [
     azurerm_network_interface.example.id,
+  ]
+depends_on = [
+    azurerm_network_interface.nic
   ]
 
   os_disk {
